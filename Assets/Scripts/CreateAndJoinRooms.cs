@@ -9,14 +9,20 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public TMP_InputField createInput;
     public TMP_InputField joinInput;
 
-    public void CreateRoom ()
+    private void Start() 
+    { 
+        createInput.onSubmit.AddListener(CreateRoom); 
+        joinInput.onSubmit.AddListener(JoinRoom);
+    }
+
+    public void CreateRoom (string text)
     {
-        PhotonNetwork.CreateRoom(createInput.text);
+        PhotonNetwork.CreateRoom(text);
     }
     
-    public void JoinRoom ()
+    public void JoinRoom (string text)
     {
-        PhotonNetwork.JoinRoom(joinInput.text);
+        PhotonNetwork.JoinRoom(text);
     }
 
     public override void OnJoinedRoom ()
